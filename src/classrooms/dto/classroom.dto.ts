@@ -56,7 +56,7 @@ export class ClassroomsQueryDto extends PaginationQueryDto {
   @IsEnum(RoomType)
   type?: RoomType;
 
-  @ApiPropertyOptional({ description: 'Capacidad minima' })
+  @ApiPropertyOptional({ type: 'integer', minimum: 1, description: 'Capacidad minima' })
   @IsOptional()
   @Transform(({ value }) => Number(value))
   @IsInt()
