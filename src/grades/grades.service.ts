@@ -103,7 +103,7 @@ export class GradesService {
     const enrollmentFilter: FilterQuery<EnrollmentDocument> = { student: student.id, status: { $ne: EnrollmentStatus.Cancelled } };
     if (query.enrollment) enrollmentFilter._id = query.enrollment;
     const ids = await this.enrollmentModel.find(enrollmentFilter).distinct('_id');
-    return this.list({ enrollment: { $in: ids } }, query);
+    return this.list({ enrollment: { $in: ids }, ...(query.evaluation ? { evaluation: query.evaluation } : {}) }, query);
   }
 
   // Calcula la nota final ponderada y deja la matricula como aprobada o reprobada
