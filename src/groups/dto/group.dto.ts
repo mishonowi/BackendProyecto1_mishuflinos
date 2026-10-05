@@ -56,7 +56,7 @@ export class CreateGroupDto {
   @Max(100)
   capacity!: number;
 
-  @ApiProperty({ type: [ScheduleSlotDto] })
+  @ApiProperty({ type: [ScheduleSlotDto], minItems: 1 })
   @IsArray()
   @ArrayMinSize(1)
   @ValidateNested({ each: true })
