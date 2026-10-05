@@ -43,7 +43,7 @@ export class CreateSubjectDto {
   @Max(12)
   semester?: number;
 
-  @ApiPropertyOptional({ type: [String], description: 'IDs de materias prerrequisito' })
+  @ApiPropertyOptional({ type: [String], uniqueItems: true, description: 'IDs de materias prerrequisito' })
   @IsOptional()
   @IsArray()
   @ArrayUnique()
