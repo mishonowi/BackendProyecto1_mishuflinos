@@ -32,7 +32,10 @@ export class GradesController {
     return this.gradesService.bulkUpsert(dto, user);
   }
 
-  @ApiOperation({ summary: 'Consultar notas de una matricula o de una evaluacion' })
+  @ApiOperation({
+    summary: 'Consultar notas de una matricula o de una evaluacion',
+    description: 'Obligatorio indicar enrollment o evaluation (si no, responde 400)',
+  })
   @Roles(Role.Admin, Role.Docente)
   @Get()
   findAll(@Query() query: GradesQueryDto, @CurrentUser() user: AuthUser): Promise<Paginated<Grade>> {
