@@ -47,5 +47,13 @@ Cada fila es un commit. Para ver el arreglo exacto: `git show <commit>`.
 | `3255093` | B25 editar evaluacion no validaba periodo cerrado (create si) | src/evaluations/evaluations.service.ts |
 | `14bace1` | B26 GET /grades/mine ignoraba el filtro evaluation | src/grades/grades.service.ts |
 | `40366bb` | B27 dashboard contaba facultades inactivas | src/reports/reports.service.ts |
+| `b3e1b15` | B28 POST /enrollments/:id/cancel respondia 201 (accion sin HttpCode 200, como finalize/close/login) | src/enrollments/enrollments.controller.ts |
+| `81621bf` | B29 Swagger ofrecia status cerrado en PATCH /periods/:id (el servicio lo rechaza; se cierra con POST /close) | src/periods/dto/period.dto.ts |
+| `04500be` | B30 Swagger de GET /grades no indicaba que enrollment o evaluation es obligatorio (sin ninguno responde 400) | src/grades/grades.controller.ts |
+| `e44d18d` | B31 Swagger de totalCredits sin minimum 1 ni tipo integer (DTO: IsInt + Min(1)) | src/programs/dto/program.dto.ts |
+| `2395fad` | B32 Swagger de minCapacity sin minimum 1 ni tipo integer (DTO: IsInt + Min(1)) | src/classrooms/dto/classroom.dto.ts |
+| `a6b6efc` | B33 Swagger de schedule de grupos sin minItems 1 (DTO: ArrayMinSize(1)) | src/groups/dto/group.dto.ts |
+| `4d09f10` | B34 Swagger de PUT /grades/bulk sin minItems 1 ni maxItems 200 (DTO: ArrayMinSize + ArrayMaxSize) | src/grades/dto/grade.dto.ts |
+| `1e099a7` | B35 Swagger de prerequisites sin uniqueItems (DTO: ArrayUnique) | src/subjects/dto/subject.dto.ts |
 
-Verificacion: npm run build OK; datos validados contra scripts/db-seed.js (0 diferencias); prueba de humo 20/20 con los usuarios del README.
+Verificacion: npm run build OK; datos validados contra scripts/db-seed.js (0 diferencias); prueba de humo 20/20 con los usuarios del README. Coleccion de Postman "Examen - Endpoints nuevos" (workspace Certi2, environment Local): 263/264 pruebas OK contra el build con B28-B35; la unica falla era una aserción mal escrita en la propia coleccion (student viene como ID en POST /enrollments), ya corregida.
