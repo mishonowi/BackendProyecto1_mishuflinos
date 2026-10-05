@@ -20,7 +20,7 @@ export class UpsertGradeDto {
 }
 
 export class BulkGradesDto {
-  @ApiProperty({ type: [UpsertGradeDto], description: 'Hasta 200 notas. Cada una se guarda por separado' })
+  @ApiProperty({ type: [UpsertGradeDto], minItems: 1, maxItems: 200, description: 'Hasta 200 notas. Cada una se guarda por separado' })
   @IsArray()
   @ArrayMinSize(1)
   @ArrayMaxSize(200)
