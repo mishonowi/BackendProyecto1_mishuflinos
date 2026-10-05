@@ -15,7 +15,7 @@ export class CreateProgramDto {
   @IsNotEmpty()
   name!: string;
 
-  @ApiProperty({ example: 160, description: 'Creditos totales del programa' })
+  @ApiProperty({ type: 'integer', minimum: 1, example: 160, description: 'Creditos totales del programa' })
   @IsInt()
   @Min(1)
   totalCredits!: number;
