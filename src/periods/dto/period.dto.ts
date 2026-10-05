@@ -21,7 +21,10 @@ export class CreatePeriodDto {
 }
 
 export class UpdatePeriodDto extends PartialType(CreatePeriodDto) {
-  @ApiPropertyOptional({ enum: PeriodStatus })
+  @ApiPropertyOptional({
+    enum: [PeriodStatus.Planned, PeriodStatus.Open],
+    description: 'Para cerrar un periodo usa POST /periods/:id/close; un periodo cerrado no se puede reabrir',
+  })
   @IsOptional()
   @IsEnum(PeriodStatus)
   status?: PeriodStatus;
